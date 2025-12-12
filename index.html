@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fabian</title>
+  <style>
+    :root{--bg:#0f1722;--card:#0b1220;--accent:#e11d48}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui}
+    body{background:linear-gradient(180deg,var(--bg),#071024);color:#ffffff;min-height:100vh}
+
+    /* Navbar */
+    .navbar{
+      position:fixed;top:0;left:0;width:100%;height:64px;
+      background:rgba(4,6,12,0.55);backdrop-filter:blur(6px);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 28px;box-sizing:border-box;z-index:50;
+      box-shadow:0 6px 24px rgba(2,6,23,0.6);
+    }
+    .nav-title{font-size:20px;font-weight:700}
+    .nav-links{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    .nav-links a{text-decoration:none;color:#d1d5db;font-size:15px;padding:6px 8px;border-radius:6px;transition:0.18s}
+    .nav-links a:hover{color:white;background:rgba(255,255,255,0.03)}
+
+    .search-box input{
+      padding:8px 12px;border-radius:10px;border:none;outline:none;
+      background:#0b1220;color:white;font-size:14px;min-width:180px;
+      box-shadow:inset 0 0 6px rgba(0,0,0,0.6);
+    }
+
+    /* Main */
+    main.container{
+      margin-top:120px;
+      display:flex;flex-direction:column;align-items:center;
+      text-align:center;
+    }
+    h1{margin:0;font-size:48px}
+
+    .circle{
+      margin-top:40px;width:340px;height:340px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:radial-gradient(circle at 40% 30%, rgba(255,255,255,0.04), transparent 30%),
+                  linear-gradient(135deg,#0b1220,#0f2135);
+      box-shadow:0 18px 40px rgba(2,6,23,0.6), inset 0 -6px 30px rgba(0,0,0,0.6);
+    }
+    .middle{font-size:160px;animation:spin 3.5s linear infinite}
+    @keyframes spin{from{transform:rotate(0)} to{transform:rotate(360deg)}}
+
+    /* TicTacToe */
+    #tictactoe{display:none;margin-top:40px}
+    .board{
+      display:grid;
+      grid-template-columns:repeat(3,100px);
+      grid-gap:6px;
+    }
+    .cell{
+      width:100px;height:100px;
+      background:#0b1220;display:flex;
+      align-items:center;justify-content:center;
+      font-size:48px;cursor:pointer;border-radius:10px;
+      transition:0.2s;
+      border:2px solid #ffffff40; /* Umrandung */
+    }
+    .cell:hover{background:#142033}
+    .resultEmoji{
+      font-size:140px;margin-top:25px;
+    }
+
+    /* Kontaktformular */
+    #contactForm{display:none;margin-top:40px;width:320px;text-align:left;}
+    #contactForm label{display:block;margin-top:12px;font-size:14px;}
+    #contactForm input, #contactForm textarea{
+      width:100%;padding:8px;border-radius:6px;border:none;margin-top:4px;
+      background:#0b1220;color:white;font-size:14px;box-sizing:border-box;
+    }
+    #contactForm button{
+      margin-top:12px;padding:10px 16px;border:none;border-radius:6px;
+      background:var(--accent);color:white;font-size:16px;cursor:pointer;
+      transition:0.2s;
+    }
+    #contactForm button:hover{background:#c81e43}
+    #contactInfo{margin-top:20px; font-size:14px; color:#cbd5e1;}
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-title">Fabian</div>
+
+    <ul class="nav-links">
+      <li><a href="#" onclick="showHome()">Home</a></li>
+      <li><a href="#" onclick="showAbout()">About</a></li>
+      <li><a href="#" onclick="showContact()">Contact</a></li>
+    </ul>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Seite durchsuchen..." />
+    </div>
+  </nav>
+
+  <main id="mainContent" class="container">
+
+    <!-- HOME -->
+    <div id="homeSection">
+      <h1>Fabian</h1>
+      <div class="circle" id="homeCircle">
+        <div class="middle" id="homeEmoji">🖕</div>
+      </div>
+    </div>
+
+    <!-- ABOUT / TICTACTOE -->
+    <div id="tictactoe">
+      <h1>Tic Tac Toe</h1>
+
+      <div class="board" id="board">
+        <div class="cell" onclick="playerMove(0)"></div>
+        <div class="cell" onclick="playerMove(1)"></div>
+        <div class="cell" onclick="playerMove(2)"></div>
+        <div class="cell" onclick="playerMove(3)"></div>
+        <div class="cell" onclick="playerMove(4)"></div>
+        <div class="cell" onclick="playerMove(5)"></div>
+        <div class="cell" onclick="playerMove(6)"></div>
+        <div class="cell" onclick="playerMove(7)"></div>
+        <div class="cell" onclick="playerMove(8)"></div>
+      </div>
+
+      <div id="result" class="resultEmoji"></div>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div id="contactForm">
+      <h1>Kontakt</h1>
+      <form onsubmit="sendMail(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" required>
+        <label for="message">Nachricht:</label>
+        <textarea id="message" rows="5" required></textarea>
+        <button type="submit">Senden</button>
+      </form>
+
+      <!-- Feste Kontaktdaten -->
+      <div id="contactInfo">
+        <strong>Kontakt Daten:</strong><br>
+        Name: Fabian<br>
+        Nachname: Matos<br>
+        E-Mail: fabian@matos.de<br>
+        Ort: Borghorst
+      </div>
+    </div>
+
+  </main>
+
+<script>
+let board = ["","","","","","","","",""];
+let gameOver = false;
+
+function showHome(){
+  document.getElementById("tictactoe").style.display = "none";
+  document.getElementById("contactForm").style.display = "none";
+  document.getElementById("homeSection").style.display = "block";
+  resetGame();
+}
+
+function showAbout(){
+  document.getElementById("homeSection").style.display = "none";
+  document.getElementById("contactForm").style.display = "none";
+  document.getElementById("tictactoe").style.display = "block";
+  resetGame();
+}
+
+function showContact(){
+  document.getElementById("homeSection").style.display = "none";
+  document.getElementById("tictactoe").style.display = "none";
+  document.getElementById("contactForm").style.display = "block";
+}
+
+function resetGame(){
+  board = ["","","","","","","","",""];
+  gameOver = false;
+  document.querySelectorAll(".cell").forEach(c => c.innerHTML = "");
+  document.getElementById("result").innerHTML = "";
+}
+
+function playerMove(i){
+  if(board[i] !== "" || gameOver) return;
+  board[i] = "X";
+  document.querySelectorAll(".cell")[i].innerHTML = "X";
+
+  if(checkWin("X")){
+    endGame("win");
+    return;
+  }
+  if(board.every(c => c !== "")){
+    endGame("draw");
+    return;
+  }
+
+  setTimeout(computerMove, 1000);
+}
+
+function computerMove(){
+  if(gameOver) return;
+
+  let empty = board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
+  if(empty.length===0) return;
+
+  let choice = empty[Math.floor(Math.random()*empty.length)];
+  board[choice] = "O";
+  document.querySelectorAll(".cell")[choice].innerHTML = "O";
+
+  if(checkWin("O")){
+    endGame("lose");
+  } else if(board.every(c=>c!=="")){
+    endGame("draw");
+  }
+}
+
+function checkWin(p){
+  let wins = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+  ];
+  return wins.some(w => w.every(i => board[i] === p));
+}
+
+function endGame(type){
+  gameOver = true;
+  if(type === "win"){
+    document.getElementById("result").innerHTML = "👍";
+  } else if(type === "lose"){
+    document.getElementById("result").innerHTML = "🖕";
+  } else {
+    document.getElementById("result").innerHTML = "😐";
+  }
+}
+
+// Funktion für Kontaktformular-Mail
+function sendMail(e){
+  e.preventDefault();
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let message = document.getElementById("message").value;
+
+  let mailtoLink = `mailto:fabian@matos.de?subject=Kontakt%20von%20${encodeURIComponent(name)}&body=${encodeURIComponent("Name: "+name+"\nE-Mail: "+email+"\n\nNachricht:\n"+message)}`;
+  window.location.href = mailtoLink;
+}
+</script>
+
+</body>
+</html>
