@@ -5,66 +5,56 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>✨ Fabian</title>
 
-<!-- Google Font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg1:#f7f7fb;
-  --bg2:#f1f6ff;
+  --bg:#f7f8fb;
   --card:#ffffff;
-  --text:#1f2937;
+  --accent:#e11d48;
+  --accent2:#22c55e;
+  --text:#0b1220;
   --muted:#64748b;
-  --accent:#f472b6;
-  --accent2:#60a5fa;
-  --accent3:#34d399;
-  --shadow: 0 14px 40px rgba(20, 23, 42, 0.12);
-  --shadow2: 0 8px 24px rgba(20, 23, 42, 0.08);
-  --radius: 18px;
+  --shadow: 0 18px 40px rgba(15, 23, 34, .12);
+  --shadow2: 0 10px 24px rgba(15, 23, 34, .10);
+  --border:#e5e7eb;
 }
 
 html,body{
   margin:0;
-  font-family:'Inter', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   color:var(--text);
-  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  background:linear-gradient(180deg,#f7f8fb,#eef2ff);
   min-height:100vh;
 }
 
-*{ box-sizing:border-box; }
-
 /* ================= NAVBAR ================= */
 .navbar{
-  position:sticky;
-  top:0;
+  position:fixed;
+  top:0;left:0;
   width:100%;
-  height:70px;
-  background:rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
-  border-bottom:1px solid rgba(15, 23, 42, 0.06);
+  height:64px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 18px;
+  box-sizing:border-box;
   z-index:50;
-}
-
-.nav-left{
-  display:flex;
-  align-items:center;
-  gap:12px;
+  border-bottom:1px solid var(--border);
 }
 
 .nav-title{
   font-size:20px;
   font-weight:700;
-  letter-spacing:0.3px;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
 .nav-title span{
-  color:var(--accent);
+  font-size:18px;
 }
 
 .nav-links{
@@ -73,111 +63,117 @@ html,body{
   gap:14px;
   margin:0;
   padding:0;
-  align-items:center;
+  justify-content:center;
+  flex:1;
 }
 
 .nav-links a{
-  color:var(--muted);
+  color:var(--text);
   text-decoration:none;
   padding:8px 10px;
-  border-radius:12px;
-  font-weight:500;
+  border-radius:10px;
   transition:.2s;
+  font-weight:600;
+  font-size:14px;
 }
 
 .nav-links a:hover{
-  color:var(--text);
-  background:rgba(244, 114, 182, 0.12);
+  background:rgba(225, 29, 72, .10);
 }
 
 .nav-links a.active{
-  color:var(--text);
-  background:rgba(96, 165, 250, 0.18);
+  background:rgba(225, 29, 72, .16);
 }
 
 .search-box{
   margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .search-box input{
-  padding:10px 12px;
-  border-radius:14px;
-  border:1px solid rgba(15, 23, 42, 0.12);
+  padding:8px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
   background:#fff;
   color:var(--text);
   outline:none;
+  width:180px;
+}
+
+.menu-toggle{
+  display:none;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  font-size:24px;
+}
+
+.mobile-nav{
+  display:none;
+  position:absolute;
+  top:64px;
+  right:12px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow: var(--shadow);
+  overflow:hidden;
   width:220px;
 }
 
-@media (max-width: 900px){
-  .nav-links{ display:none; }
-  .search-box{ display:none; }
+.mobile-nav a{
+  display:block;
+  padding:12px 14px;
+  text-decoration:none;
+  color:var(--text);
+  border-bottom:1px solid var(--border);
+  font-weight:600;
 }
 
-.mobile-menu{
-  display:none;
-  gap:10px;
-  align-items:center;
+.mobile-nav a:last-child{
+  border-bottom:none;
 }
 
-.mobile-menu button{
-  background:transparent;
-  border:none;
-  font-size:22px;
-  cursor:pointer;
-}
-
-@media (max-width: 900px){
-  .mobile-menu{ display:flex; }
+.mobile-nav a:hover{
+  background:rgba(225, 29, 72, .08);
 }
 
 /* ================= MAIN ================= */
 main{
-  margin-top:18px;
-  padding: 18px;
+  margin-top:90px;
   display:flex;
   flex-direction:column;
   align-items:center;
   text-align:center;
+  padding:0 14px;
 }
 
-/* ================= CARDS ================= */
-.card{
-  background:var(--card);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:22px;
-  width: min(980px, 100%);
-  margin: 16px 0;
-}
-
-.card h1{
-  margin:0 0 10px 0;
-  font-size:28px;
-  letter-spacing:0.2px;
-}
-
-.card p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.5;
+section{
+  display:none;
+  width:100%;
 }
 
 /* ================= HOME ================= */
+#home{
+  display:block;
+}
+
 .circle{
-  margin:20px auto;
-  width:280px;
-  height:280px;
+  margin:40px auto;
+  width:340px;
+  height:340px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  background: linear-gradient(135deg, #ffffff, #fef1f8);
-  box-shadow: 0 20px 60px rgba(244, 114, 182, 0.22);
+  background:linear-gradient(135deg,#ffffff,#eaf0ff);
+  box-shadow: var(--shadow);
 }
 
 .middle{
-  font-size:140px;
+  font-size:160px;
   animation:spin 3.5s linear infinite;
 }
 
@@ -190,41 +186,47 @@ main{
   margin-top:20px;
 }
 
+.card{
+  background:var(--card);
+  border-radius:18px;
+  padding:24px;
+  max-width:520px;
+  margin:0 auto;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
 #difficulty{
   margin-top:10px;
-  padding:8px 12px;
+  padding:10px 12px;
   border-radius:12px;
   background:#fff;
   color:var(--text);
-  border:1px solid rgba(15, 23, 42, 0.12);
+  border:1px solid var(--border);
+  width:100%;
+  box-sizing:border-box;
 }
 
 .board{
   display:grid;
-  grid-template-columns:repeat(3, 100px);
+  grid-template-columns:repeat(3,1fr);
   gap:10px;
   justify-content:center;
   margin-top:20px;
 }
 
 .cell{
-  width:100px;
-  height:100px;
+  width:100%;
+  aspect-ratio:1/1;
   background:#fff;
-  border-radius:16px;
+  border-radius:14px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:48px;
   cursor:pointer;
-  border:1px solid rgba(15, 23, 42, 0.12);
-  box-shadow:var(--shadow2);
-  transition:.15s;
-}
-
-.cell:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(20, 23, 42, 0.18);
+  border:1px solid var(--border);
+  box-shadow: var(--shadow2);
 }
 
 .result{
@@ -235,17 +237,21 @@ main{
 button{
   margin-top:10px;
   padding:10px 14px;
-  background:linear-gradient(135deg, var(--accent), var(--accent2));
+  background:var(--accent);
   border:none;
   color:#fff;
-  border-radius:14px;
+  border-radius:12px;
   cursor:pointer;
-  box-shadow: 0 14px 28px rgba(244, 114, 182, 0.28);
-  transition:.2s;
+  font-weight:700;
+  box-shadow: var(--shadow2);
 }
 
-button:hover{
-  transform: translateY(-2px);
+button.secondary{
+  background:var(--accent2);
+}
+
+button:active{
+  transform:scale(.98);
 }
 
 /* ================= CONTACT ================= */
@@ -268,14 +274,13 @@ button:hover{
   margin-top:8px;
   background:#fff;
   color:var(--text);
-  border:none;
-  border-radius:14px;
-  box-shadow:var(--shadow2);
+  border:1px solid var(--border);
+  border-radius:12px;
   box-sizing:border-box;
 }
 
 #contactForm button{
-  width:100%;
+  margin-top:10px;
 }
 
 /* ================= FABSE ================= */
@@ -294,11 +299,10 @@ button:hover{
 
 .speech{
   background:#fff;
-  padding:18px 22px;
-  border-radius:20px;
+  padding:16px 20px;
+  border-radius:18px;
   text-align:center;
-  box-shadow:var(--shadow);
-  max-width:520px;
+  box-shadow: var(--shadow);
 }
 
 @keyframes wave{
@@ -317,30 +321,28 @@ button:hover{
 .shop-grid{
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:24px;
   margin-top:20px;
 }
 
 .auction-card{
   background:#fff;
-  border-radius:22px;
-  padding:22px;
-  box-shadow:var(--shadow);
+  border-radius:18px;
+  padding:24px;
   max-width:520px;
   margin:0 auto;
-  text-align:left;
+  box-shadow:var(--shadow);
+  text-align:center;
 }
 
 .auction-card img{
   width:100%;
-  border-radius:16px;
+  border-radius:14px;
   margin-bottom:16px;
-  object-fit:cover;
 }
 
 .auction-card h2{
-  margin:10px 0 6px 0;
-  font-size:22px;
+  margin:10px 0 6px;
 }
 
 .auction-info{
@@ -362,7 +364,7 @@ button:hover{
 .bid-row{
   display:flex;
   gap:10px;
-  justify-content:space-between;
+  justify-content:center;
   align-items:center;
   margin-top:10px;
 }
@@ -370,27 +372,26 @@ button:hover{
 .bid-row input{
   width:120px;
   padding:10px;
-  border-radius:14px;
-  border:1px solid rgba(15, 23, 42, 0.12);
+  border-radius:12px;
+  border:1px solid var(--border);
   background:#fff;
   color:var(--text);
 }
 
+/* ================= FAQ ================= */
 .faq-item{
   background:#fff;
-  border-radius:18px;
-  padding:14px;
-  margin:12px auto;
+  border-radius:14px;
+  padding:16px;
+  margin:10px auto;
   max-width:520px;
   text-align:left;
-  box-shadow:var(--shadow2);
 }
 
 .faq-question{
   display:flex;
   justify-content:space-between;
   cursor:pointer;
-  font-weight:600;
 }
 
 .faq-answer{
@@ -409,16 +410,30 @@ button:hover{
   margin-top:20px;
 }
 
+.snake-wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+
 #snakeCanvas{
   background:#fff;
-  border-radius:22px;
-  box-shadow: 0 20px 60px rgba(96, 165, 250, 0.28);
-  border: 1px solid rgba(96, 165, 250, 0.35);
+  border-radius:18px;
+  box-shadow: 0 18px 40px rgba(15, 23, 34, .18);
+  border:6px solid rgba(34, 197, 94, .35);
 }
 
 #snakeScore{
   margin-top:14px;
   font-size:16px;
+}
+
+.snake-controls{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
 
 /* ================= PONG ================= */
@@ -429,9 +444,9 @@ button:hover{
 
 #pongCanvas{
   background:#fff;
-  border-radius:22px;
-  box-shadow: 0 20px 60px rgba(244, 114, 182, 0.28);
-  border: 1px solid rgba(244, 114, 182, 0.35);
+  border-radius:18px;
+  box-shadow: 0 18px 40px rgba(15, 23, 34, .18);
+  border:6px solid rgba(225, 29, 72, .35);
 }
 
 .pong-score{
@@ -443,50 +458,92 @@ button:hover{
   display:flex;
   gap:12px;
   justify-content:center;
-  margin-top:10px;
 }
 
-/* ================= TEST ================= */
-#test img{
-  max-width:100%;
-  border-radius:12px;
+/* ================= MAZE ================= */
+#maze{
+  display:none;
   margin-top:20px;
 }
 
-/* ================= WORTSPIEL ================= */
-#wortspiel input{
-  padding:10px 12px;
-  border-radius:14px;
-  border:1px solid rgba(15, 23, 42, 0.12);
+.maze-card{
   background:#fff;
-  color:var(--text);
-  outline:none;
+  border-radius:18px;
+  padding:24px;
+  max-width:720px;
+  margin:0 auto;
+  box-shadow:var(--shadow);
+  text-align:center;
 }
 
-#wortspiel button{
-  padding:10px 14px;
-  background:linear-gradient(135deg, var(--accent3), var(--accent2));
-  border:none;
-  color:#fff;
-  border-radius:14px;
-  cursor:pointer;
-  box-shadow: 0 14px 28px rgba(52, 211, 153, 0.25);
+.maze-controls{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:12px;
 }
 
-#wortspiel #reimErgebnis{
+.maze-canvas{
   margin-top:20px;
-  font-size:20px;
+  width:100%;
+  max-width:720px;
+  height:420px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
 }
 
 /* ================= RESPONSIVE ================= */
+@media (max-width: 900px){
+  .nav-links, .search-box{
+    display:none;
+  }
+  .menu-toggle{
+    display:block;
+  }
+  main{
+    margin-top:80px;
+  }
+  .circle{
+    width:260px;
+    height:260px;
+  }
+  .middle{
+    font-size:120px;
+  }
+  .board{
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+  .cell{
+    font-size:40px;
+  }
+  .maze-canvas{
+    height:320px;
+  }
+}
+
 @media (max-width: 520px){
-  .board{ grid-template-columns:repeat(3, 84px); }
-  .cell{ width:84px; height:84px; font-size:42px; }
-  .circle{ width:230px; height:230px; }
-  .search-box input{ width: 160px; }
-  .auction-card{ padding:18px; }
-  .bid-row{ flex-direction:column; align-items:stretch; }
-  .bid-row input{ width:100%; }
+  .circle{
+    width:220px;
+    height:220px;
+  }
+  .middle{
+    font-size:90px;
+  }
+  .search-box input{
+    width:120px;
+  }
+  .card, .auction-card{
+    padding:18px;
+  }
+  .bid-row input{
+    width:100px;
+  }
+  .maze-canvas{
+    height:280px;
+  }
 }
 </style>
 </head>
@@ -494,9 +551,7 @@ button:hover{
 <body>
 
 <nav class="navbar">
-  <div class="nav-left">
-    <div class="nav-title"><span>✨</span> Fabian</div>
-  </div>
+  <div class="nav-title">✨ Fabian <span>•</span></div>
 
   <ul class="nav-links">
     <li><a href="#" onclick="show('home')" class="active">Home</a></li>
@@ -513,8 +568,17 @@ button:hover{
     <input id="search" placeholder="Seite durchsuchen…" oninput="searchPage()">
   </div>
 
-  <div class="mobile-menu">
-    <button onclick="toggleMobileMenu()">☰</button>
+  <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" onclick="show('home'); closeMobileMenu()">Home</a>
+    <a href="#" onclick="show('spielBibliothek'); closeMobileMenu()">Spiel</a>
+    <a href="#" onclick="show('fabse'); closeMobileMenu()">Fabse</a>
+    <a href="#" onclick="show('Mitarbeiter'); closeMobileMenu()">Mitarbeiter</a>
+    <a href="#" onclick="show('wortspiel'); closeMobileMenu()">Wortspiel</a>
+    <a href="#" onclick="show('shop'); closeMobileMenu()">Shop</a>
+    <a href="#" onclick="show('faq'); closeMobileMenu()">FAQ</a>
+    <a href="#" onclick="show('contactForm'); closeMobileMenu()">Contact</a>
   </div>
 </nav>
 
@@ -522,46 +586,46 @@ button:hover{
 
 <!-- HOME -->
 <section id="home">
-  <div class="card">
-    <h1>Fabian</h1>
-    <p>Willkommen auf meiner modernen Seite – hell, clean und mobil optimiert.</p>
-    <div class="circle">
-      <div class="middle">🖕</div>
-    </div>
+  <h1>Fabian</h1>
+  <div class="circle">
+    <div class="middle">🖕</div>
   </div>
 </section>
 
 <!-- SPIEL BIBLIOTHEK -->
 <section id="spielBibliothek">
-  <div class="card">
-    <h1>Herzlich Willkommen in meiner Spiele Bibliothek</h1>
-    <p>Wähle ein Spiel aus:</p>
+  <h1>Herzlich Willkommen in meiner Spiele Bibliothek</h1>
+  <p>Wähle ein Spiel aus:</p>
+  <div class="auction-card" style="max-width:520px;">
+    <h2>Tic Tac Toe</h2>
+    <p class="auction-info">Klicke auf „Start“, um Tic Tac Toe zu spielen.</p>
+    <button onclick="show('game')">Tic Tac Toe starten</button>
+  </div>
 
-    <div class="auction-card" style="max-width:520px; margin-top:18px;">
-      <h2>Tic Tac Toe</h2>
-      <p class="auction-info">Klicke auf „Start“, um Tic Tac Toe zu spielen.</p>
-      <button onclick="show('game')">Tic Tac Toe starten</button>
-    </div>
+  <div class="auction-card" style="max-width:520px; margin-top:20px;">
+    <h2>Snake</h2>
+    <p class="auction-info">Klassisches Snake-Spiel mit Highscore.</p>
+    <button onclick="show('snake')">Snake starten</button>
+  </div>
 
-    <div class="auction-card" style="max-width:520px; margin-top:18px;">
-      <h2>Snake</h2>
-      <p class="auction-info">Klassisches Snake-Spiel mit Highscore.</p>
-      <button onclick="show('snake')">Snake starten</button>
-    </div>
+  <div class="auction-card" style="max-width:520px; margin-top:20px;">
+    <h2>Pong</h2>
+    <p class="auction-info">Pong mit Pfeiltasten (hoch/runter).</p>
+    <button onclick="show('pong')">Pong starten</button>
+  </div>
 
-    <div class="auction-card" style="max-width:520px; margin-top:18px;">
-      <h2>Pong</h2>
-      <p class="auction-info">Pong mit Pfeiltasten (hoch/runter).</p>
-      <button onclick="show('pong')">Pong starten</button>
-    </div>
+  <div class="auction-card" style="max-width:520px; margin-top:20px;">
+    <h2>3D Labyrinth</h2>
+    <p class="auction-info">Wechsle zwischen 2D & 3D. Ziel: Socke 🧦</p>
+    <button onclick="show('maze')">3D Labyrinth starten</button>
   </div>
 </section>
 
 <!-- TIC TAC TOE -->
 <section id="game">
-  <div class="card">
-    <h1>Tic Tac Toe</h1>
+  <h1>Tic Tac Toe</h1>
 
+  <div class="card">
     <select id="difficulty">
       <option value="easy">Leicht</option>
       <option value="medium">Mittel</option>
@@ -592,194 +656,209 @@ button:hover{
 
 <!-- SNAKE -->
 <section id="snake">
-  <div class="card">
-    <h1>Snake</h1>
+  <h1>Snake</h1>
+  <div class="snake-wrapper">
     <canvas id="snakeCanvas" width="360" height="360"></canvas>
     <div id="snakeScore">
       Score: <span id="scoreValue">0</span> |
       Highscore: <span id="highscoreValue">0</span>
     </div>
-    <div class="pong-controls">
-      <button onclick="startSnake()">Start</button>
-      <button onclick="restartSnake()">Neustart</button>
+    <div class="snake-controls">
+      <button class="secondary" onclick="startSnake()">Start</button>
+      <button class="secondary" onclick="restartSnake()">Neustart</button>
     </div>
   </div>
 </section>
 
 <!-- PONG -->
 <section id="pong">
-  <div class="card">
-    <h1>Pong</h1>
-    <canvas id="pongCanvas" width="480" height="320"></canvas>
-    <div class="pong-score">
-      Player: <span id="p1Score">0</span> |
-      CPU: <span id="p2Score">0</span>
+  <h1>Pong</h1>
+  <canvas id="pongCanvas" width="480" height="320"></canvas>
+  <div class="pong-score">
+    Player: <span id="p1Score">0</span> |
+    CPU: <span id="p2Score">0</span>
+  </div>
+  <div class="pong-controls">
+    <button onclick="startPong()">Start</button>
+    <button onclick="resetPong()">Neustart</button>
+  </div>
+  <p style="margin-top:12px;">Steuerung: Pfeiltasten ↑ ↓</p>
+</section>
+
+<!-- MAZE -->
+<section id="maze">
+  <h1>3D Labyrinth</h1>
+
+  <div class="maze-card">
+    <div>
+      <button onclick="setMazeMode('2d')">2D</button>
+      <button onclick="setMazeMode('3d')">3D</button>
+      <button class="secondary" onclick="resetMaze()">Neustart</button>
     </div>
-    <div class="pong-controls">
-      <button onclick="startPong()">Start</button>
-      <button onclick="resetPong()">Neustart</button>
+
+    <div class="maze-canvas" id="mazeCanvas2d" style="display:block;">
+      <canvas id="maze2d" width="720" height="420" style="width:100%; height:100%;"></canvas>
     </div>
-    <p style="margin-top:12px;">Steuerung: Pfeiltasten ↑ ↓</p>
+
+    <div class="maze-canvas" id="mazeCanvas3d" style="display:none;">
+      <canvas id="maze3d" width="720" height="420" style="width:100%; height:100%;"></canvas>
+    </div>
+
+    <div style="margin-top:12px;">
+      Ziel: 🧦  |  Player: 🦶
+    </div>
   </div>
 </section>
 
 <!-- FABSE -->
 <section id="fabse">
-  <div class="card">
-    <div class="fabse-container">
-      <div class="fabse-emoji">👋🙂</div>
-      <div class="speech">Hallo ich bin Fabse</div>
-    </div>
+  <div class="fabse-container">
+    <div class="fabse-emoji">👋🙂</div>
+    <div class="speech">Hallo ich bin Fabse</div>
   </div>
 </section>
 
 <!-- MITARBEITER -->
 <section id="Mitarbeiter">
-  <div class="card">
-    <h1>Fabse Rapsöl</h1>
-    <div>
-      <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzBnY3JhNGVkbG5vOTRiaGpyMWtxdmlqMWtsbGswMHJ5MGU5Y2JyNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JIX9t2j0ZTN9S/giphy.gif" alt="Test GIF" />
-    </div>
+  <h1>Fabse Rapsöl</h1>
+  <div>
+    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzBnY3JhNGVkbG5vOTRiaGpyMWtxdmlqMWtsbGswMHJ5MGU5Y2JyNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JIX9t2j0ZTN9S/giphy.gif" 
+         alt="Test GIF"/>
   </div>
 </section>
 
 <!-- WORTSPIEL -->
 <section id="wortspiel">
-  <div class="card">
-    <h1>Wortspiel</h1>
-    <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
-      <input type="text" id="wortInput" value="Fabian ...">
-      <button onclick="reimName()">Namen reimen</button>
-    </div>
-    <div id="reimErgebnis"></div>
+  <h1>Wortspiel</h1>
+  <div style="display:flex; gap:10px; justify-content:center; margin-top:20px; flex-wrap:wrap;">
+    <input type="text" id="wortInput" value="Fabian ...">
+    <button onclick="reimName()">Namen reimen</button>
   </div>
+  <div id="reimErgebnis"></div>
 </section>
 
 <!-- SHOP -->
 <section id="shop">
-  <div class="card">
-    <h1>🛒 Auktion</h1>
+  <h1>🛒 Auktion</h1>
 
-    <div class="shop-grid">
-      <!-- Auktion 1 -->
-      <div class="auction-card">
-        <img src="Medien_Auktion.jpg" alt="Apple Watch & AirPods">
-        <h2>Apple Watch & AirPods</h2>
-        <p class="auction-info">
-          Auktion aufgrund einer Investition: Der Führerschein Klasse B ist zu teuer – deshalb muss ich auf Apple Watch und AirPods verzichten.
-        </p>
+  <div class="shop-grid">
+    <!-- Auktion 1 -->
+    <div class="auction-card">
+      <img src="Medien_Auktion.jpg" alt="Apple Watch & AirPods">
+      <h2>Apple Watch & AirPods</h2>
+      <p class="auction-info">
+        Auktion aufgrund einer Investition: Der Führerschein Klasse B ist zu teuer – deshalb muss ich auf Apple Watch und AirPods verzichten.
+      </p>
 
-        <div class="price" id="price1">Aktuelles Gebot: 67,69€</div>
-        <div id="countdown1"></div>
+      <div class="price" id="price1">Aktuelles Gebot: 67,69€</div>
+      <div id="countdown1"></div>
 
-        <div class="bid-row">
-          <input type="number" step="0.01" id="bid1" placeholder="Gebot">
-          <button onclick="placeBid(1)">Bieten</button>
-        </div>
-        <div id="bidInfo1"></div>
+      <div class="bid-row">
+        <input type="number" step="0.01" id="bid1" placeholder="Gebot">
+        <button onclick="placeBid(1)">Bieten</button>
       </div>
+      <div id="bidInfo1"></div>
+    </div>
 
-      <!-- Auktion 2 -->
-      <div class="auction-card">
-        <img src="Medien_Auktion_1.jpg" alt="Portmonie">
-        <h2>Portmonie</h2>
-        <p class="auction-info">
-          Portmonie in gutem Zustand. Perfekt als Ersatz oder Geschenk.
-        </p>
+    <!-- Auktion 2 -->
+    <div class="auction-card">
+      <img src="Medien_Auktion_1.jpg" alt="Portmonie">
+      <h2>Portmonie</h2>
+      <p class="auction-info">
+        Portmonie in gutem Zustand. Perfekt als Ersatz oder Geschenk.
+      </p>
 
-        <div class="price" id="price2">Aktuelles Gebot: 12,99€</div>
-        <div id="countdown2"></div>
+      <div class="price" id="price2">Aktuelles Gebot: 12,99€</div>
+      <div id="countdown2"></div>
 
-        <div class="bid-row">
-          <input type="number" step="0.01" id="bid2" placeholder="Gebot">
-          <button onclick="placeBid(2)">Bieten</button>
-        </div>
-        <div id="bidInfo2"></div>
+      <div class="bid-row">
+        <input type="number" step="0.01" id="bid2" placeholder="Gebot">
+        <button onclick="placeBid(2)">Bieten</button>
       </div>
+      <div id="bidInfo2"></div>
+    </div>
 
-      <!-- Auktion 3 -->
-      <div class="auction-card">
-        <img src="Medien_Auktion_2.jpg" alt="Schlüssel Bund">
-        <h2>Schlüssel Bund</h2>
-        <p class="auction-info">
-          Schlüsselbund mit 2 Schlüsseln und Karabiner – robust und praktisch.
-        </p>
+    <!-- Auktion 3 -->
+    <div class="auction-card">
+      <img src="Medien_Auktion_2.jpg" alt="Schlüssel Bund">
+      <h2>Schlüssel Bund</h2>
+      <p class="auction-info">
+        Schlüsselbund mit 2 Schlüsseln und Karabiner – robust und praktisch.
+      </p>
 
-        <div class="price" id="price3">Aktuelles Gebot: 20,99€</div>
-        <div id="countdown3"></div>
+      <div class="price" id="price3">Aktuelles Gebot: 20,99€</div>
+      <div id="countdown3"></div>
 
-        <div class="bid-row">
-          <input type="number" step="0.01" id="bid3" placeholder="Gebot">
-          <button onclick="placeBid(3)">Bieten</button>
-        </div>
-        <div id="bidInfo3"></div>
+      <div class="bid-row">
+        <input type="number" step="0.01" id="bid3" placeholder="Gebot">
+        <button onclick="placeBid(3)">Bieten</button>
       </div>
+      <div id="bidInfo3"></div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section id="faq">
-  <div class="card">
-    <h1>FAQ</h1>
+  <h1>FAQ</h1>
 
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">
-        <span>Warum verkaufst du Handy und AirPods?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        Der Führerschein Klasse B ist teuer, deshalb trenne ich mich von Handy und AirPods, um das zu finanzieren.
-      </div>
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+      <span>Warum verkaufst du Handy und AirPods?</span>
+      <span class="faq-icon">+</span>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">
-        <span>Wie lange läuft die Auktion?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        Die Auktion endet am 30.01.2026 um 10:00 Uhr.
-      </div>
+    <div class="faq-answer">
+      Der Führerschein Klasse B ist teuer, deshalb trenne ich mich von Handy und AirPods, um das zu finanzieren.
     </div>
+  </div>
 
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">
-        <span>Wie kann ich bieten?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        Gib ein Gebot ein und klicke auf „Bieten“. Der Preis muss höher als das aktuelle Gebot sein.
-      </div>
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+      <span>Wie lange läuft die Auktion?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Die Auktion endet am 30.01.2026 um 10:00 Uhr.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+      <span>Wie kann ich bieten?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Gib ein Gebot ein und klicke auf „Bieten“. Der Preis muss höher als das aktuelle Gebot sein.
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contactForm">
-  <div class="card">
-    <h1>Kontakt</h1>
-    <form onsubmit="sendMail(event)">
-      <label for="name">Name:</label>
-      <input type="text" id="name" required>
-      <label for="email">E-Mail:</label>
-      <input type="email" id="email" required>
-      <label for="message">Nachricht:</label>
-      <textarea id="message" rows="5" required></textarea>
-      <button type="submit">Senden</button>
-    </form>
+  <h1>Kontakt</h1>
+  <form onsubmit="sendMail(event)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <label for="email">E-Mail:</label>
+    <input type="email" id="email" required>
+    <label for="message">Nachricht:</label>
+    <textarea id="message" rows="5" required></textarea>
+    <button type="submit">Senden</button>
+  </form>
 
-    <div id="contactInfo">
-      <strong>Kontakt Daten:</strong><br>
-      Name: Fabian<br>
-      Nachname: Strickmann<br>
-      E-Mail: fabian@joy-ist-geil.de<br>
-      Ort: Bett von Joy
-    </div>
+  <div id="contactInfo">
+    <strong>Kontakt Daten:</strong><br>
+    Name: Fabian<br>
+    Nachname: Strickmann<br>
+    E-Mail: fabian@joy-ist-geil.de<br>
+    Ort: Bett von Joy
   </div>
 </section>
 
 </main>
+
+<!-- THREE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
 let board=["","","","","","","","",""];
@@ -789,11 +868,18 @@ let wins=0, losses=0, draws=0;
 function show(id){
   document.querySelectorAll("section").forEach(s=>s.style.display="none");
   document.getElementById(id).style.display="block";
+  document.querySelectorAll(".nav-links a").forEach(a=>a.classList.remove("active"));
+  const activeLink = Array.from(document.querySelectorAll(".nav-links a")).find(a => a.getAttribute("onclick").includes(id));
+  if(activeLink) activeLink.classList.add("active");
+}
 
-  // active link
-  document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
-  const link = Array.from(document.querySelectorAll(".nav-links a")).find(a => a.textContent.toLowerCase() === id.toLowerCase() || a.textContent.toLowerCase().includes(id.toLowerCase()));
-  if(link) link.classList.add("active");
+// Mobile menu
+function toggleMobileMenu(){
+  const nav = document.getElementById("mobileNav");
+  nav.style.display = nav.style.display === "block" ? "none" : "block";
+}
+function closeMobileMenu(){
+  document.getElementById("mobileNav").style.display = "none";
 }
 
 function searchPage(){
@@ -802,6 +888,7 @@ function searchPage(){
   else if(q.includes("tic") || q.includes("tac") || q.includes("toe")) show('game');
   else if(q.includes("snake")) show('snake');
   else if(q.includes("pong")) show('pong');
+  else if(q.includes("maze")) show('maze');
   else if(q.includes("fabse")) show('fabse');
   else if(q.includes("mitarbeiter")) show('Mitarbeiter');
   else if(q.includes("wort")) show('wortspiel');
@@ -809,20 +896,6 @@ function searchPage(){
   else if(q.includes("faq")) show('faq');
   else if(q.includes("kontakt")) show('contactForm');
   else show('home');
-}
-
-// ===== Mobile Menu =====
-function toggleMobileMenu(){
-  const menu = document.querySelector(".nav-links");
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  menu.style.flexDirection = "column";
-  menu.style.position = "absolute";
-  menu.style.top = "70px";
-  menu.style.right = "18px";
-  menu.style.background = "rgba(255,255,255,0.95)";
-  menu.style.borderRadius = "16px";
-  menu.style.boxShadow = "0 18px 40px rgba(20, 23, 42, 0.18)";
-  menu.style.padding = "10px";
 }
 
 // ===== Tic Tac Toe =====
@@ -955,10 +1028,10 @@ function placeFood(){
 function drawSnake(){
   ctx.clearRect(0,0,snakeCanvas.width,snakeCanvas.height);
 
-  ctx.fillStyle = "#f472b6";
+  ctx.fillStyle = "#e11d48";
   ctx.fillRect(food.x*tileSize, food.y*tileSize, tileSize, tileSize);
 
-  ctx.fillStyle = "#1f2937";
+  ctx.fillStyle = "#0b1220";
   snake.forEach(part => {
     ctx.fillRect(part.x*tileSize, part.y*tileSize, tileSize, tileSize);
   });
@@ -1016,6 +1089,30 @@ function restartSnake(){
   resetSnake();
 }
 
+// Swipe controls for mobile
+let touchStartX = 0;
+let touchStartY = 0;
+
+snakeCanvas.addEventListener("touchstart", function(e){
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+});
+
+snakeCanvas.addEventListener("touchmove", function(e){
+  e.preventDefault();
+  const dx = e.touches[0].clientX - touchStartX;
+  const dy = e.touches[0].clientY - touchStartY;
+
+  if(Math.abs(dx) > Math.abs(dy)){
+    if(dx > 20 && direction.x !== -1) direction = {x:1,y:0};
+    if(dx < -20 && direction.x !== 1) direction = {x:-1,y:0};
+  } else {
+    if(dy > 20 && direction.y !== -1) direction = {x:0,y:1};
+    if(dy < -20 && direction.y !== 1) direction = {x:0,y:-1};
+  }
+});
+
+// Keyboard controls (PC)
 document.addEventListener("keydown", function(e){
   if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key)){
     e.preventDefault();
@@ -1052,7 +1149,7 @@ let pongRunning = false;
 function drawPong(){
   pctx.clearRect(0,0,pongCanvas.width,pongCanvas.height);
 
-  pctx.fillStyle = "#1f2937";
+  pctx.fillStyle = "#0b1220";
   pctx.fillRect(10, p1Y, paddleWidth, paddleHeight);
   pctx.fillRect(pongCanvas.width-20, p2Y, paddleWidth, paddleHeight);
 
@@ -1226,6 +1323,240 @@ function reimName(){
   const zufall = reime[Math.floor(Math.random() * reime.length)];
   document.getElementById("reimErgebnis").textContent = "Fabian = " + zufall;
 }
+
+/* ================= MAZE (2D + 3D) ================= */
+
+let mazeSize = 15; // mittel
+let maze = [];
+let player = {x:1, y:1};
+let goal = {x:mazeSize-2, y:mazeSize-2};
+
+let mazeMode = "2d";
+
+function generateMaze(){
+  maze = Array.from({length:mazeSize},()=>Array.from({length:mazeSize},()=>1));
+  // Simple maze generator (DFS)
+  let stack = [{x:1,y:1}];
+  maze[1][1]=0;
+
+  while(stack.length){
+    let cur = stack[stack.length-1];
+    let dirs = [
+      {x:2,y:0},{x:-2,y:0},{x:0,y:2},{x:0,y:-2}
+    ].sort(()=>Math.random()-0.5);
+
+    let moved=false;
+    for(let d of dirs){
+      let nx = cur.x+d.x, ny = cur.y+d.y;
+      if(nx>0 && ny>0 && nx<mazeSize-1 && ny<mazeSize-1 && maze[ny][nx]==1){
+        maze[ny][nx]=0;
+        maze[cur.y+d.y/2][cur.x+d.x/2]=0;
+        stack.push({x:nx,y:ny});
+        moved=true;
+        break;
+      }
+    }
+    if(!moved) stack.pop();
+  }
+
+  player={x:1,y:1};
+  goal={x:mazeSize-2,y:mazeSize-2};
+}
+
+function drawMaze2D(){
+  const canvas = document.getElementById("maze2d");
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width;
+  const h = canvas.height;
+  const cellW = w/mazeSize;
+  const cellH = h/mazeSize;
+
+  ctx.clearRect(0,0,w,h);
+
+  for(let y=0;y<mazeSize;y++){
+    for(let x=0;x<mazeSize;x++){
+      if(maze[y][x]==1){
+        ctx.fillStyle="#0b1220";
+        ctx.fillRect(x*cellW,y*cellH,cellW,cellH);
+      } else {
+        ctx.fillStyle="#fff";
+        ctx.fillRect(x*cellW,y*cellH,cellW,cellH);
+      }
+    }
+  }
+
+  // goal
+  ctx.fillStyle="#22c55e";
+  ctx.fillText("🧦", (goal.x+0.1)*cellW, (goal.y+0.8)*cellH);
+  ctx.font="28px Arial";
+
+  // player
+  ctx.fillStyle="#e11d48";
+  ctx.fillText("🦶", (player.x+0.1)*cellW, (player.y+0.8)*cellH);
+  ctx.font="28px Arial";
+}
+
+function setMazeMode(mode){
+  mazeMode = mode;
+  document.getElementById("mazeCanvas2d").style.display = mode==="2d" ? "block" : "none";
+  document.getElementById("mazeCanvas3d").style.display = mode==="3d" ? "block" : "none";
+  if(mode==="3d") init3DMaze();
+  drawMaze2D();
+}
+
+function resetMaze(){
+  generateMaze();
+  if(mazeMode==="3d") init3DMaze();
+  drawMaze2D();
+}
+
+function movePlayer(dx,dy){
+  let nx = player.x+dx;
+  let ny = player.y+dy;
+  if(nx<0||ny<0||nx>=mazeSize||ny>=mazeSize) return;
+  if(maze[ny][nx]==1) return;
+  player.x=nx; player.y=ny;
+  drawMaze2D();
+  if(mazeMode==="3d") update3DPlayer();
+  checkGoal();
+}
+
+function checkGoal(){
+  if(player.x===goal.x && player.y===goal.y){
+    alert("Du hast gewonnen! 🎉");
+    resetMaze();
+  }
+}
+
+document.addEventListener("keydown", function(e){
+  if(document.getElementById("maze").style.display==="block"){
+    if(e.key==="ArrowUp") movePlayer(0,-1);
+    if(e.key==="ArrowDown") movePlayer(0,1);
+    if(e.key==="ArrowLeft") movePlayer(-1,0);
+    if(e.key==="ArrowRight") movePlayer(1,0);
+  }
+});
+
+// Swipe control for maze
+let mzTouchStartX=0, mzTouchStartY=0;
+document.getElementById("maze2d").addEventListener("touchstart", function(e){
+  mzTouchStartX=e.touches[0].clientX;
+  mzTouchStartY=e.touches[0].clientY;
+});
+document.getElementById("maze2d").addEventListener("touchmove", function(e){
+  e.preventDefault();
+  const dx=e.touches[0].clientX-mzTouchStartX;
+  const dy=e.touches[0].clientY-mzTouchStartY;
+  if(Math.abs(dx)>Math.abs(dy)){
+    if(dx>20) movePlayer(1,0);
+    if(dx<-20) movePlayer(-1,0);
+  } else {
+    if(dy>20) movePlayer(0,1);
+    if(dy<-20) movePlayer(0,-1);
+  }
+});
+
+// ================= 3D Maze with Three.js =================
+
+let scene, camera, renderer, playerMesh, goalMesh;
+let wallSize = 1;
+let mazeObjects = [];
+let cameraTarget = new THREE.Vector3();
+
+function init3DMaze(){
+  // clean up
+  if(renderer){
+    renderer.dispose();
+    renderer.domElement.remove();
+  }
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xf7f8fb);
+
+  camera = new THREE.PerspectiveCamera(75, 720/420, 0.1, 1000);
+  camera.position.set(1.5, 1.5, 1.5);
+  camera.lookAt(1.5,0,1.5);
+
+  renderer = new THREE.WebGLRenderer({canvas: document.getElementById("maze3d"), antialias:true});
+  renderer.setSize(720,420);
+
+  // light
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(5,10,5);
+  scene.add(light);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambient);
+
+  // walls
+  mazeObjects.forEach(o=>scene.remove(o));
+  mazeObjects=[];
+
+  const wallGeo = new THREE.BoxGeometry(wallSize,1,wallSize);
+  const wallMat = new THREE.MeshStandardMaterial({color:0x0b1220});
+
+  for(let y=0;y<mazeSize;y++){
+    for(let x=0;x<mazeSize;x++){
+      if(maze[y][x]==1){
+        let wall = new THREE.Mesh(wallGeo, wallMat);
+        wall.position.set(x,0.5,y);
+        scene.add(wall);
+        mazeObjects.push(wall);
+      }
+    }
+  }
+
+  // floor
+  const floorGeo = new THREE.PlaneGeometry(mazeSize, mazeSize);
+  const floorMat = new THREE.MeshStandardMaterial({color:0xffffff});
+  const floor = new THREE.Mesh(floorGeo,floorMat);
+  floor.rotation.x=-Math.PI/2;
+  floor.position.set((mazeSize-1)/2,0,(mazeSize-1)/2);
+  scene.add(floor);
+
+  // player (foot emoji as texture)
+  const playerTex = new THREE.TextureLoader().load("data:image/svg+xml;charset=utf-8," + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+      <text x="50%" y="55%" font-size="90" text-anchor="middle" dominant-baseline="middle">🦶</text>
+    </svg>
+  `));
+  const playerMat = new THREE.SpriteMaterial({map: playerTex});
+  playerMesh = new THREE.Sprite(playerMat);
+  playerMesh.scale.set(0.8,0.8,0.8);
+  scene.add(playerMesh);
+
+  // goal (sock emoji)
+  const goalTex = new THREE.TextureLoader().load("data:image/svg+xml;charset=utf-8," + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+      <text x="50%" y="55%" font-size="90" text-anchor="middle" dominant-baseline="middle">🧦</text>
+    </svg>
+  `));
+  const goalMat = new THREE.SpriteMaterial({map: goalTex});
+  goalMesh = new THREE.Sprite(goalMat);
+  goalMesh.scale.set(0.8,0.8,0.8);
+  scene.add(goalMesh);
+
+  update3DPlayer();
+  animate3D();
+}
+
+function update3DPlayer(){
+  playerMesh.position.set(player.x, 0.5, player.y);
+  goalMesh.position.set(goal.x, 0.5, goal.y);
+
+  camera.position.set(player.x+2, 2, player.y+2);
+  camera.lookAt(player.x,0,player.y);
+}
+
+function animate3D(){
+  requestAnimationFrame(animate3D);
+  renderer.render(scene,camera);
+}
+
+// init
+generateMaze();
+drawMaze2D();
+init3DMaze();
 </script>
 
 </body>
